@@ -382,11 +382,11 @@
   $(document).ready(function(){
 		//$( "#dialog" ).dialog();
 		$("#dialog").dialog({
-		            modal: true,
+		    modal: true,
             width: 400,
             height: 450,
-            overlay: { backgroundColor: "#000", opacity: 0.5 },
-            buttons:{ "Close": function() { $(this).dialog("close"); } },
+            overlay: { backgroundColor: "#FFF", opacity: 0.5 },
+            //buttons:{ "Close": function() { $(this).dialog("close"); } },
             close: function(ev, ui) { $(this).remove();frame(); },
     });
 
