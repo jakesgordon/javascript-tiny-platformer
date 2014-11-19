@@ -346,6 +346,7 @@
     entity.right    = obj.properties.right;
     entity.start    = { x: obj.x, y: obj.y }
     entity.killed = entity.collected = 0;
+    entity.jump     = obj.properties.jump;
     return entity;
   }
 
@@ -375,7 +376,7 @@
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
   document.addEventListener('keyup',   function(ev) { return onkey(ev, ev.keyCode, false); }, false);
 
-  get("level.json", function(req) {
+  get("level_1.json", function(req) {
     setup(JSON.parse(req.responseText));
     frame();
   });
