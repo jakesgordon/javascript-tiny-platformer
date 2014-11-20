@@ -376,9 +376,22 @@
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
   document.addEventListener('keyup',   function(ev) { return onkey(ev, ev.keyCode, false); }, false);
 
+  function start_game() {
   get("level_1.json", function(req) {
     setup(JSON.parse(req.responseText));
     frame();
-  });
+  }); 
+  } 
+
+
+if (confirm("wanna play???")){
+    window.alert("game starting!!");
+    start_game();
+}
+else{
+   
+    window.alert("why u no play");
+
+}
 
 })();
