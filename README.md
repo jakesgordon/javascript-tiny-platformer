@@ -1,6 +1,11 @@
+Play the game
+=========
+Updating version :
+
+[Here](http://Niuuuuu.github.io)
+
 Javascript Tiny-Platformer
 ==========================
-
 A very minimal javascript platform game
 
  * [play the game](http://codeincomplete.com/projects/tiny-platformer/index.html)
