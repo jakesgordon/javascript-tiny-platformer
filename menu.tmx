@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="32" tileheight="32" backgroundcolor="#000000">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="160" height="32"/>
+ </tileset>
+ <layer name="background" width="64" height="48">
+  <data encoding="base64" compression="zlib">
+   eJztlOEOgzAIhKub7//Ki8mWLIQDiu2mcpfwowVKP7FsrbWtuFWV5H8oZu03Zd0UP/JpQjVQXE+ujEf9R3dE9/DqaDFI2jmR7+vdWfOP5PdqaXvL22Sc1/9efuQbzW/Vi/Rexp2l/9779/Kt+2lxaMZE5s6I919F5Cc/+euK/OQnf12Rfw7/U5j0RXOtPO+ciGbyo7V17568avzf6xHsu872/8s8LXYU+65f9T/ruyv/kRl3Bf6riPzkJ39OizC0b/m0fatGtE5UR/kj+/LOXo4WY7FluD+axZ/pv3Xu1fhRzN3639vLke8f1egR5z/5yV9Xs/hXY70qhvLkGVrOEf2LP5oXPTOrmfxWj1Ef2f+cL6szvv/MbMiK85/85K8r8pO/ur0AAncG0g==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object name="player" type="player" x="1750" y="614.545" width="86.5455" height="65.3333"/>
+ </objectgroup>
+</map>
