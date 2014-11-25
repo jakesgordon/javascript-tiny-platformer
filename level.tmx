@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="64" height="48" tilewidth="32" tileheight="32" backgroundcolor="#000000">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="48" tilewidth="32" tileheight="32" backgroundcolor="#000000">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="tiles.png" width="160" height="32"/>
  </tileset>
  <layer name="background" width="64" height="48">
   <data encoding="base64" compression="zlib">
-   eJztmdkKwzAMBE3b/P8vl1IKpdR4Zcm2jh3YxxzjyFJCrtbaVTxVoT/96V8X+r/zcBYJmut8/O/OIkFzHdY//SP4a3tEjyj+q8jqj84VS/8Ts68HOlcs/XfMPuv1ylr/KPSnf0R/qz4Q1d8K+tMf8T/5LiO9Lwmo/47v+BPr6an+rdcTwZP/CXb7r6rn2b2y+7/Y6nqW8nK8dVJhX9A/l7+0D3z7S/d/hn/wv/6zx2qTwb/68/fUL9A+kNUfReL/r2Yl9e8RqX+0/jbCu7+2hkZ9IIJ/b39ZEMl/1Gu050dmtMZ/Ntrzo/4Zs/KZMgwTP0+CiQx1
+   eJztmdkKwzAMBE3a/P8vl1IKJdREa1m2jh3YxxzjyFJCztbaWTxVoT/96V8X+n/ydBYEzXW+/g9nQdBch/VP/wj+2h7RI4q/FVn9pXNlpv+O2ddDOldm+q+YfbPXK2v9S6E//elfF/rTX+K/810GvS8Eqf+K7/gd6+mp/mevpwRP/jtY7W9Vz6N7ZfV/Met6Rnk7Hp1U2Bf0z+WP9oFff3T/Z/gHf/UfPVabDP7Vn7+nfiHtA1n9pSD+/2oWqX+PoP7R+tsd3v2tayiCf29/zSCS/12v0Z5fMqM1/qPRnl/qnzGWz5RhmPh5AarcDE0=
   </data>
  </layer>
- <objectgroup name="Object Layer 1" width="64" height="48">
+ <objectgroup name="Object Layer 1">
   <object name="player" type="player" x="96" y="480" width="32" height="32"/>
   <object name="monster" type="monster" x="64" y="192" width="32" height="32">
    <properties>
@@ -52,7 +52,7 @@
     <property name="right" value="true"/>
    </properties>
   </object>
-  <object name="monster" type="monster" x="1856" y="1344" width="32" height="32">
+  <object name="monster" type="monster" x="1858" y="1342" width="32" height="32">
    <properties>
     <property name="maxdx" value="10"/>
     <property name="right" value="true"/>
@@ -66,5 +66,22 @@
   </object>
   <object name="treasure" type="treasure" x="32" y="192" width="32" height="32"/>
   <object name="treasure" type="treasure" x="1984" y="1344" width="32" height="32"/>
+  <object name="slider" type="slider" x="1621" y="608" width="157" height="28">
+   <properties>
+    <property name="gravity" value="0"/>
+    <property name="maxdx" value="7"/>
+    <property name="maxdy" value="4"/>
+    <property name="right" value="true"/>
+    <property name="size" value="5"/>
+   </properties>
+  </object>
+  <object name="slider" type="slider" x="1638.5" y="1249" width="157" height="28">
+   <properties>
+    <property name="gravity" value="0"/>
+    <property name="maxdx" value="5"/>
+    <property name="right" value="true"/>
+    <property name="size" value="5"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
