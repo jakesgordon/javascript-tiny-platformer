@@ -5,18 +5,28 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
   <title>Javascript Platformer</title>
 
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/themes/sunny/jquery-ui.css" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+  
   <style>
     body            { background: #111; }
     #platformer     { margin: 1em auto; position: relative; width: 512px; height: 384px; }
     #canvas         { display: inline-block; width: 100%; height: 100%; }
     #instructions   { font-style: italic; color: #999; font-size: 9pt; margin-left: 1em; margin-top: 0.5em; }
     #instructions b { color: #DDD; }
-    @media screen and (min-width:     0px) and (min-height:    0px) { #platformer { width:  512px; height: 384px; font-size:  7pt; } } /* block = 16 */
+	
+	.ui-widget {background: #53777A;}
+	.ui-widget-header {background: #53777A; border:none; color:gold;}
+	.ui-widget-overlay { opacity: 0;}
+    
+	@media screen and (min-width:     0px) and (min-height:    0px) { #platformer { width:  512px; height: 384px; font-size:  7pt; } } /* block = 16 */
     @media screen and (min-width:   840px) and (min-height:  530px) { #platformer { width:  640px; height: 480px; font-size:  9pt; } } /* block = 20 */
     @media screen and (min-width:   968px) and (min-height:  626px) { #platformer { width:  768px; height: 576px; font-size: 11pt; } } /* block = 24 */
     @media screen and (min-width:  1096px) and (min-height:  722px) { #platformer { width:  896px; height: 672px; font-size: 13pt; } } /* block = 28 */
     @media screen and (min-width:  1224px) and (min-height:  818px) { #platformer { width: 1024px; height: 768px; font-size: 15pt; } } /* block = 32 */
   </style>
+
 
 </head>
 
@@ -29,13 +39,17 @@
         Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
       </div>
     </canvas>
-
+<!--
+	moving instructions to start screen
     <div id="instructions">
       <b>LEFT/RIGHT</b> to move, <b>SPACE</b> to jump, collect gold and jump on monsters.
     </div>
-
+-->
+	<div id="dialog" title="Tiny Platformer">
+		<p>Collect all the gold and squash monsters to win!</p>
+		<p>Use the <b>LEFT/RIGHT</b> arrows and <b>SPACE</b> to jump.</p>
+	</div>
   </div>
-
   <script src="fpsmeter.min.js"></script>
   <script src="platformer.js"></script>
 

@@ -1,5 +1,4 @@
 (function() { // module pattern
-
   //-------------------------------------------------------------------------
   // POLYFILLS
   //-------------------------------------------------------------------------
@@ -70,6 +69,8 @@
       monsters = [],
       treasure = [],
       cells    = [];
+	  //
+	  sliders = [];
   
   var t2p      = function(t)     { return t*TILE;                  },
       p2t      = function(p)     { return Math.floor(p/TILE);      },
@@ -92,6 +93,8 @@
   function update(dt) {
     updatePlayer(dt);
     updateMonsters(dt);
+	//
+	updateSliders(dt);
     checkTreasure();
   }
 
@@ -115,6 +118,29 @@
           killPlayer(player);
       }
     }
+  }
+  
+  function updateSliders(dt){
+	var n, max;
+	for(n = 0, max = sliders.length; n < max; n++)
+	{
+		updateEntity(sliders[n], dt);
+		if(overlap(player.x, player.y, TILE, TILE, sliders[n].x, sliders[n].y, 5 * TILE, TILE)){
+			if((player.dy > 0) && (sliders[n].y - player.y > TILE/2)){
+				//should land on moving slider
+				//console.log("land");
+				player.y = t2p(p2t(player.y));       // clamp the y position to avoid falling into platform below
+				player.dy = 0;            			 // stop downward velocity
+				player.falling = false;   			 // no longer falling
+				player.jumping = false;   			 // (or jumping)
+				ny = 0; 
+				player.dx = sliders[n].dx;
+			}else{
+				//should bounce down
+				console.log("bounce");
+			}
+		}
+	}
   }
 
   function checkTreasure() {
@@ -183,6 +209,7 @@
         ny        = entity.y%TILE,
         cell      = tcell(tx,     ty),
         cellright = tcell(tx + 1, ty),
+		cell6right= tcell(tx + 6, ty),
         celldown  = tcell(tx,     ty + 1),
         celldiag  = tcell(tx + 1, ty + 1);
   
@@ -232,6 +259,17 @@
         entity.left  = true;
       }
     }
+	
+	if (entity.slider) {
+		if(entity.left && (cell || entity.x < 1474)){
+			entity.left = false;
+			entity.right = true;
+		}
+		else if(entity.right && cell6right){
+			entity.right = false;
+			entity.left = true;
+		}
+	}
   
     entity.falling = ! (celldown || (nx && celldiag));
   
@@ -247,6 +285,7 @@
     renderTreasure(ctx, frame);
     renderPlayer(ctx, dt);
     renderMonsters(ctx, dt);
+	renderSliders(ctx, dt);
   }
 
   function renderMap(ctx) {
@@ -286,6 +325,19 @@
         ctx.fillRect(monster.x + (monster.dx * dt), monster.y + (monster.dy * dt), TILE, TILE);
     }
   }
+  
+  function renderSliders(ctx, dt){
+	ctx.fillStyle = COLOR.PURPLE;
+	var n, k, max, slider;
+	for(n = 0, max = sliders.length ; n < max; n++){
+		slider = sliders[n];
+		for(k = 0; k < slider.size; k++){
+			//console.log("test");
+			//this is being called
+			ctx.fillRect(slider.x + TILE * k + (slider.dx * dt), slider.y + (slider.dy * dt), TILE, TILE)
+		}
+	}
+  }
 
   function renderTreasure(ctx, frame) {
     ctx.fillStyle   = COLOR.GOLD;
@@ -310,7 +362,7 @@
   //-------------------------------------------------------------------------
   
   function setup(map) {
-    var data    = map.layers[0].data,
+	var data    = map.layers[0].data,
         objects = map.layers[1].objects,
         n, obj, entity;
 
@@ -320,7 +372,8 @@
       switch(obj.type) {
       case "player"   : player = entity; break;
       case "monster"  : monsters.push(entity); break;
-      case "treasure" : treasure.push(entity); break;
+      case "treasure" : treasure.push(entity);break;
+	  case "slider" : sliders.push(entity); break;
       }
     }
 
@@ -342,6 +395,10 @@
     entity.monster  = obj.type == "monster";
     entity.player   = obj.type == "player";
     entity.treasure = obj.type == "treasure";
+	//
+	entity.slider   = obj.type == "slider";
+	entity.size     = obj.properties.size;
+	//
     entity.left     = obj.properties.left;
     entity.right    = obj.properties.right;
     entity.start    = { x: obj.x, y: obj.y }
@@ -359,7 +416,7 @@
   
   function frame() {
     fpsmeter.tickStart();
-    now = timestamp();
+	now = timestamp();
     dt = dt + Math.min(1, (now - last) / 1000);
     while(dt > step) {
       dt = dt - step;
@@ -377,7 +434,22 @@
 
   get("level.json", function(req) {
     setup(JSON.parse(req.responseText));
-    frame();
+
+  $(document).ready(function(){
+		//$( "#dialog" ).dialog();
+		$("#dialog").dialog({
+		    modal: true,
+            width: 600,
+            height: 400,
+            //overlay: { backgroundColor: "#000", opacity: 0 },
+            //buttons:{ "Close": function() { $(this).dialog("close"); } },
+            close: function(ev, ui) { $(this).remove();frame(); },
+    });
+
+
+	});
+	
+    
   });
 
 })();
