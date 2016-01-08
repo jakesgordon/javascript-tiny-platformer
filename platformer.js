@@ -369,6 +369,20 @@
     last = now;
     counter++;
     fpsmeter.tick();
+    var gamepad = navigator.getGamepads()[0];
+    if(gamepad){
+    player.jump  = gamepad.buttons[0].value;
+    if(gamepad.axes[0]<0.3){
+      player.left = true;
+      } else{
+        player.left = false;
+      }
+      if(gamepad.axes[0]>-0.3){
+        player.right = true;
+      } else{
+        player.right = false;
+      }
+    }
     requestAnimationFrame(frame, canvas);
   }
   
