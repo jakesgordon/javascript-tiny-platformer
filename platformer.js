@@ -361,6 +361,8 @@
   var counter = 0, dt = 0, now,
       last = timestamp(),
       fpsmeter = new FPSMeter({ decimals: 0, graph: true, theme: 'dark', left: '5px' });
+
+  // Starts when window loads
   var startTime = new Date().getTime();
   
   function frame() {
