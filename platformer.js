@@ -50,7 +50,7 @@
   var MAP      = { tw: 64, th: 48 },
       TILE     = 32,
       METER    = TILE,
-      GRAVITY  = 9.8 * 6, // default (exagerated) gravity
+      GRAVITY  = 9.8 * 6, // default (exaggerated) gravity
       MAXDX    = 15,      // default max horizontal speed (15 tiles per second)
       MAXDY    = 60,      // default max vertical speed   (60 tiles per second)
       ACCEL    = 1/2,     // default take 1/2 second to reach maxdx (horizontal acceleration)
@@ -241,11 +241,11 @@
   // RENDERING
   //-------------------------------------------------------------------------
   
-  function render(ctx, frame, dt) {
+  function render(ctx, frame, dt, gameTime) {
     ctx.clearRect(0, 0, width, height);
     renderMap(ctx);
     renderTreasure(ctx, frame);
-    renderPlayer(ctx, dt);
+    renderPlayer(ctx, dt, gameTime);
     renderMonsters(ctx, dt);
   }
 
@@ -262,7 +262,7 @@
     }
   }
 
-  function renderPlayer(ctx, dt) {
+  function renderPlayer(ctx, dt, gameTime) {
     ctx.fillStyle = COLOR.YELLOW;
     ctx.fillRect(player.x + (player.dx * dt), player.y + (player.dy * dt), TILE, TILE);
 
@@ -275,6 +275,11 @@
     ctx.fillStyle = COLOR.SLATE;
     for(n = 0, max = player.killed ; n < max ; n++)
       ctx.fillRect(t2p(2 + n), t2p(3), TILE/2, TILE/2);
+
+    // Creates a timer in the top right corner
+    ctx.fillStyle = "white"
+    ctx.font = "30px Arial"
+    ctx.fillText("Time: " + gameTime, 1865, 75)
   }
 
   function renderMonsters(ctx, dt) {
@@ -356,6 +361,7 @@
   var counter = 0, dt = 0, now,
       last = timestamp(),
       fpsmeter = new FPSMeter({ decimals: 0, graph: true, theme: 'dark', left: '5px' });
+  var startTime = new Date().getTime();
   
   function frame() {
     fpsmeter.tickStart();
@@ -365,7 +371,9 @@
       dt = dt - step;
       update(step);
     }
-    render(ctx, counter, dt);
+    gameTime = new Date().getTime()
+    gameTime = parseInt((gameTime - startTime)/1000);
+    render(ctx, counter, dt, gameTime);
     last = now;
     counter++;
     fpsmeter.tick();
