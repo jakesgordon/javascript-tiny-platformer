@@ -8,7 +8,7 @@ A very minimal javascript platform game
  * read a [follow up article](https://jakesgordon.com/writing/tiny-platformer-revisited/) about adding monsters and treasure
  * view the [source](https://github.com/jakesgordon/javascript-tiny-platformer)
 
-Just a sinple example of how to have a tiny rectangle run around some rectangle platforms, 
+Just a simple example of how to have a tiny rectangle run around some rectangle platforms, 
 collecting rectangular gold and avoiding rectangular monsters.
 
 SUPPORTED BROWSERS
